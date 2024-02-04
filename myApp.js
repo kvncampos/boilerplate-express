@@ -5,7 +5,7 @@ require('dotenv').config()
 // ** LOAD ENVIRONMENT VARIABLES FROM .ENV **
 let express = require("express");
 let app = express();
-
+let bodyParser = require('body-parser');
 // -------------------------------------------------------
 // ** IMPLEMENT A ROOT-LEVEL REQUEST LOGGER MIDDLEWARE **
 app.use((req, res, next) => {
@@ -84,9 +84,12 @@ app.get('/:word/echo',
     }
 );
 // ---------------------------------------------------------
+// ** Use body-parser to Parse POST Requests **
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json());
 // ** Get Query Parameter Input from the Client **
 app.route('/name')
-  .get((req, res) => {
+.get((req, res) => {
     if (req.query.first === undefined || req.query.last === undefined){
         res.status(400).json({
             error: 'Both "first" and "last" parameters are required.'
@@ -95,13 +98,13 @@ app.route('/name')
     else {
         let firstName = req.query.first;
         let lastName = req.query.last;
-        res.json({
-            name: `${firstName} ${lastName}`
-        });
         console.log(firstName, lastName)
+        res.json({
+            'first': firstName,
+            'last': lastName
+        });
         }
-    }
-);
+    })
 
 
 // console.log("Hello World");
