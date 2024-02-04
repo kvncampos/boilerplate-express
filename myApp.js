@@ -24,13 +24,10 @@ app.use((req, res, next) => {
 
 // --------------------------------------------------------
 // ** SERVE AN 'HTML' FILE **
-// app.get("/", (req, res) => {
-  // res.sendFile(__dirname + "/views/index.html");
-// });
-
 app.get("/", (req, res) => {
-  res.send("Hello Express");
-  });
+  res.sendFile(__dirname + "/views/index.html");
+});
+// 
 
 // ---------------------------------------------------------
 // ** SERVE 'STATIC' ASSETS **
