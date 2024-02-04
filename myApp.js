@@ -83,7 +83,26 @@ app.get('/:word/echo',
         });
     }
 );
+// ---------------------------------------------------------
+// ** Get Query Parameter Input from the Client **
+app.route('/name')
+  .get((req, res) => {
+    if (req.query.first === undefined || req.query.last === undefined){
+        res.status(400).json({
+            error: 'Both "first" and "last" parameters are required.'
+          });
+    }
+    else {
+        let firstName = req.query.first;
+        let lastName = req.query.last;
+        res.json({
+            name: `${firstName} ${lastName}`
+        });
+        console.log(firstName, lastName)
+        }
+    }
+);
 
 
-console.log("Hello World");
+// console.log("Hello World");
 module.exports = app;
