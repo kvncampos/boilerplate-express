@@ -39,23 +39,17 @@ app.use("/public", express.static(__dirname + "/public"));
 
 // ---------------------------------------------------------
 // ** SERVE 'JSON' TO A SPECIFIC ROUTE **
-// app.get('/json', (req, res) => {
-//   let response;
-//   if (process.env.MESSAGE_STYLE === "uppercase") {
-    // response = "Hello World".toUpperCase();
-//   } else {
-    // response = "Hello World";
-//   }
-//   res.json({
-    // "message": response
-//   });
-// });
 app.get('/json', (req, res) => {
-    res.json({
-        'message': 'Hello json'
-    })
+  let response;
+  if (process.env.MESSAGE_STYLE === "uppercase") {
+    response = "Hello json".toUpperCase();
+  } else {
+    response = "Hello World";
+  }
+  res.json({
+    "message": response
+  });
 });
-
 
 // ---------------------------------------------------------
 // ** CHAIN MIDDLEWARE TO CREATE A TIME SERVER **
