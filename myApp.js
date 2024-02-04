@@ -105,6 +105,24 @@ app.route('/name')
         });
         }
     })
+    .post((req, res) => {
+        var { first: firstName, last: lastName } = req.body;
+    
+        if (!firstName || !lastName) {
+            return res.status(400).json({
+                error: 'Both "first" and "last" parameters are required.'
+            });
+        }
+    
+        res.json({
+            name: `${firstName} ${lastName}`
+        });
+    });
+    
+
+// ---------------------------------------------------------
+// ** Get Data from POST Requests **
+
 
 
 // console.log("Hello World");
