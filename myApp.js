@@ -70,5 +70,20 @@ app.get('/now',
 });
 
 
+// ---------------------------------------------------------
+// ** Get Route Parameter Input from the Client **
+app.get('/:word/echo', 
+    (req, res, next) => {
+        req.word = req.params.word; // Declare word using req.word
+        next();
+    },
+    (req, res) => {
+        res.json({
+            'echo': req.word, // Access word second function
+        });
+    }
+);
+
+
 console.log("Hello World");
 module.exports = app;
